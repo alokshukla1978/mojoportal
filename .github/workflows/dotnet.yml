@@ -19,9 +19,13 @@ jobs:
         dotnet-version: 5.0.x
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+    - name: Restore Packages
+      run: nuget restore mojoPortal.sln
     - name: Restore dependencies
-      run: dotnet restore mojoportal.sln
+      run: dotnet restore mojoPortal.sln
     - name: Build
-      run: msbuild mojoportal.sln
+      run: msbuild mojoPortal.sln
     - name: Test
       run: dotnet test --no-build --verbosity normal 
